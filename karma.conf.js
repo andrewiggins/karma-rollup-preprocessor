@@ -40,7 +40,7 @@ module.exports = function(config) {
 				format: 'iife',
 				sourcemap: 'inline',
 			},
-			plugins: [require('rollup-plugin-buble')()],
+			plugins: [require('@rollup/plugin-buble')()],
 		},
 
 		customPreprocessors: {
@@ -48,9 +48,9 @@ module.exports = function(config) {
 				base: 'rollup',
 				options: {
 					plugins: [
-						require('rollup-plugin-node-resolve')(),
-						require('rollup-plugin-commonjs')(),
-						require('rollup-plugin-buble')(),
+						require('@rollup/plugin-node-resolve').default(),
+						require('@rollup/plugin-commonjs')(),
+						require('@rollup/plugin-buble')(),
 					],
 				},
 			},
@@ -58,14 +58,15 @@ module.exports = function(config) {
 				base: 'rollup',
 				options: {
 					plugins: [
-						require('rollup-plugin-node-resolve')({
+						require('@rollup/plugin-node-resolve').default({
 							extensions: ['.js', '.ts'],
 						}),
-						require('rollup-plugin-commonjs')({
+						require('@rollup/plugin-commonjs')({
 							include: 'node_modules/**',
 							extensions: ['.js', '.ts'],
 						}),
-						require('rollup-plugin-babel')({
+						require('@rollup/plugin-babel').default({
+							babelHelpers: 'bundled',
 							exclude: 'node_modules/**',
 							extensions: ['.js', '.ts'],
 						}),
